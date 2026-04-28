@@ -1,3 +1,11 @@
+openrsvp (0.1.0-0ubuntu1~noble2) noble; urgency=medium
+
+  * Fix build failure on Launchpad: drop debian/compat, since debhelper compat
+    13 is already declared via Build-Depends: debhelper-compat (= 13). Modern
+    debhelper rejects specifying the level in both places.
+
+ -- George Cottrell <georgecottrell@email.com>  Tue, 28 Apr 2026 12:45:00 +0000
+
 openrsvp (0.1.0-0ubuntu1~noble1) noble; urgency=medium
 
   * Initial release: Rapid Serial Visual Presentation reader.

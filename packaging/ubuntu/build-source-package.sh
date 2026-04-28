@@ -50,9 +50,15 @@ done
 cp -a "$ROOT/packaging/ubuntu/debian" "$PKG_ROOT/debian"
 chmod +x "$PKG_ROOT/debian/rules"
 
-# 4. Patch the changelog series in case caller asked for jammy/oracular/etc.
-sed -i -E "1s/\(([0-9.]+)-0ubuntu1~[a-z]+1\) [a-z]+;/(\1-${DEB_REV}) ${SERIES};/" \
+# 4. Patch the top changelog entry to the requested series. The version bump
+#    digit (~noble1, ~noble2, …) is preserved by reading it from the existing
+#    changelog rather than hardcoding "1".
+EXISTING_VER="$(dpkg-parsechangelog -l "$PKG_ROOT/debian/changelog" -SVersion)"
+EXISTING_REV="${EXISTING_VER#*-}"   # e.g. 0ubuntu1~noble2
+DEB_REV="${EXISTING_REV%~*}~${SERIES}${EXISTING_REV##*[a-z]}"
+sed -i -E "1s/\(([0-9.]+)-0ubuntu1~[a-z]+[0-9]+\) [a-z]+;/(\1-${DEB_REV}) ${SERIES};/" \
     "$PKG_ROOT/debian/changelog"
+FULLVER="${VERSION}-${DEB_REV}"
 
 # 5. Build the source package (-S = source only, -sa = include orig in .changes).
 ( cd "$PKG_ROOT" && dpkg-buildpackage -S -sa -d -nc )
