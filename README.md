@@ -12,6 +12,39 @@ A world-class **Rapid Serial Visual Presentation** reader for desktop. Drop a PD
 - **Cross-platform** — Linux (AppImage, .deb) and Windows (NSIS installer, portable .exe).
 - **Fully offline** — no API keys, no telemetry. Only network call is fetching URLs you paste.
 
+## Install
+
+### Ubuntu / Debian (PPA)
+
+```bash
+sudo add-apt-repository ppa:gcottrell/openrsvp
+sudo apt update
+sudo apt install openrsvp
+```
+
+After install, launch from your application menu or run `openrsvp` from a terminal.
+
+### Ubuntu / Debian (.deb, no PPA)
+
+Download the latest `.deb` from [the releases page](https://github.com/Clanker-Built/OpenRSVP/releases/latest):
+
+```bash
+sudo apt install ./openrsvp_*_amd64.deb
+```
+
+### Linux (AppImage, distro-agnostic)
+
+Download the `.AppImage` from [the releases page](https://github.com/Clanker-Built/OpenRSVP/releases/latest), then:
+
+```bash
+chmod +x OpenRSVP-*.AppImage
+./OpenRSVP-*.AppImage
+```
+
+### Windows
+
+Windows builds (NSIS installer + portable `.exe`) are coming in a follow-up release.
+
 ## Reading-text extraction
 
 | Format | Strategy |
