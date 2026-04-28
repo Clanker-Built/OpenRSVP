@@ -1,0 +1,48 @@
+#!/usr/bin/make -f
+# Prebuilt Electron app: no compile, just install files into the package tree.
+
+export DH_VERBOSE = 1
+
+%:
+	dh $@
+
+# Skip the autodetected build system (there's nothing to build here).
+override_dh_auto_configure:
+override_dh_auto_build:
+override_dh_auto_test:
+override_dh_auto_clean:
+
+override_dh_install:
+	# App tree → /opt/OpenRSVP
+	install -d $(CURDIR)/debian/openrsvp/opt/OpenRSVP
+	cp -a app/. $(CURDIR)/debian/openrsvp/opt/OpenRSVP/
+
+	# Symlink launcher onto the PATH
+	install -d $(CURDIR)/debian/openrsvp/usr/bin
+	ln -sf /opt/OpenRSVP/openrsvp $(CURDIR)/debian/openrsvp/usr/bin/openrsvp
+
+	# Desktop entry
+	install -D -m 0644 debian/openrsvp.desktop \
+	    $(CURDIR)/debian/openrsvp/usr/share/applications/openrsvp.desktop
+
+	# Hicolor icons
+	for size in 16 24 32 48 64 128 256 512; do \
+	    install -D -m 0644 icons/icon-$$size.png \
+	        $(CURDIR)/debian/openrsvp/usr/share/icons/hicolor/$${size}x$${size}/apps/openrsvp.png ; \
+	done
+	dh_install
+
+# The chrome-sandbox SUID helper must be 4755 root:root.
+override_dh_fixperms:
+	dh_fixperms
+	if [ -f $(CURDIR)/debian/openrsvp/opt/OpenRSVP/chrome-sandbox ]; then \
+	    chmod 4755 $(CURDIR)/debian/openrsvp/opt/OpenRSVP/chrome-sandbox ; \
+	fi
+
+# Don't strip the prebuilt binaries — they're already release-stripped and
+# touching them invalidates Electron's integrity expectations.
+override_dh_strip:
+override_dh_strip_nondeterminism:
+override_dh_shlibdeps:
+	dh_shlibdeps --dpkg-shlibdeps-params=--ignore-missing-info -- \
+	    -l$(CURDIR)/debian/openrsvp/opt/OpenRSVP || true

@@ -1,0 +1,28 @@
+Source: openrsvp
+Section: utils
+Priority: optional
+Maintainer: George Cottrell <georgecottrell@email.com>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.2
+Homepage: https://github.com/clanker-built/OpenRSVP
+Vcs-Browser: https://github.com/clanker-built/OpenRSVP
+Vcs-Git: https://github.com/clanker-built/OpenRSVP.git
+
+Package: openrsvp
+Architecture: amd64
+Depends: ${shlibs:Depends}, ${misc:Depends},
+ libgtk-3-0,
+ libnotify4,
+ libnss3,
+ libxss1,
+ libxtst6,
+ xdg-utils,
+ libatspi2.0-0,
+ libuuid1,
+ libsecret-1-0
+Recommends: libappindicator3-1
+Description: Rapid Serial Visual Presentation reader
+ OpenRSVP is a desktop reader that streams documents word-by-word at a chosen
+ speed, with Spritz-style Optimal Recognition Point highlighting. Supports
+ PDF, EPUB, DOCX/DOC, TXT, Markdown, HTML and live URLs. The package ships
+ a prebuilt Electron application; no compilation is required at install time.

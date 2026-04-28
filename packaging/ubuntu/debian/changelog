@@ -1,0 +1,10 @@
+openrsvp (0.1.0-0ubuntu1~noble1) noble; urgency=medium
+
+  * Initial release: Rapid Serial Visual Presentation reader.
+    - PDF main-text extraction with column detection and header/footer dedup
+    - Mozilla Readability for HTML / URLs / EPUB cleanup
+    - DOCX (mammoth), legacy DOC (word-extractor), TXT, Markdown
+    - Spritz-style ORP highlighting, smart pacing, 1/2/3-word chunks
+    - Per-document bookmarks, visual start-position picker
+
+ -- George Cottrell <georgecottrell@email.com>  Tue, 28 Apr 2026 10:30:00 +0000

@@ -1,0 +1,29 @@
+appId: io.openrsvp.app
+productName: OpenRSVP
+files:
+  - dist/**/*
+  - package.json
+  - assets/**/*
+directories:
+  output: release
+linux:
+  target:
+    - AppImage
+    - deb
+  category: Office
+  icon: assets/icon.png
+  maintainer: George Cottrell <georgecottrell@email.com>
+  vendor: George Cottrell
+  synopsis: Rapid Serial Visual Presentation reader
+  description: |
+    OpenRSVP is a desktop reader that streams documents word-by-word at a chosen
+    speed, with Spritz-style Optimal Recognition Point highlighting. Supports
+    PDF, EPUB, DOCX/DOC, TXT, Markdown, HTML and live URLs.
+win:
+  target:
+    - nsis
+    - portable
+  icon: assets/icon.png
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
