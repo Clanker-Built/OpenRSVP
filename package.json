@@ -1,6 +1,6 @@
 {
   "name": "openrsvp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "World-class Rapid Serial Visual Presentation reader for PDFs, books, articles, and websites.",
   "author": {
     "name": "George Cottrell",

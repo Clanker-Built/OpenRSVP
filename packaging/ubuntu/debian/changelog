@@ -1,10 +1,12 @@
-openrsvp (0.1.0-0ubuntu1~noble2) noble; urgency=medium
+openrsvp (0.1.1-0ubuntu1~noble1) noble; urgency=medium
 
-  * Fix build failure on Launchpad: drop debian/compat, since debhelper compat
-    13 is already declared via Build-Depends: debhelper-compat (= 13). Modern
-    debhelper rejects specifying the level in both places.
+  * Packaging fix: drop debian/compat so debhelper compat 13 is declared only
+    via Build-Depends: debhelper-compat (= 13). Modern debhelper rejects
+    having both. New upstream version forced because Launchpad will not
+    accept a re-upload sharing an orig tarball with an already-uploaded
+    source version.
 
- -- George Cottrell <georgecottrell@email.com>  Tue, 28 Apr 2026 12:45:00 +0000
+ -- George Cottrell <georgecottrell@email.com>  Tue, 28 Apr 2026 12:55:00 +0000
 
 openrsvp (0.1.0-0ubuntu1~noble1) noble; urgency=medium
 
